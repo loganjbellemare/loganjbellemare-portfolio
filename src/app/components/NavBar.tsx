@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Searchbar from "./Searchbar";
 import { FaGithub } from "react-icons/fa";
 import { BsMailboxFlag } from "react-icons/bs";
+import NavLinks from "./NavLinks";
 
 type Props = {};
 
 export default function NavBar(props: Props) {
+  const [searchInput, setSearchInput] = useState("");
+
+  function handleChange(value: string) {
+    setSearchInput(value);
+  }
+
   return (
     <>
       <nav className=" sticky shadow-sm top-0 left-0 lg:max-w-[75%] sm:max-w-[100%] m-auto bg-violet-950 ">
@@ -45,19 +53,23 @@ export default function NavBar(props: Props) {
             </a>
             {/** search bar in nav for bigger screens */}
             <div className="relative hidden md:flex">
-              <Searchbar />
+              <Searchbar
+                value={searchInput}
+                onChange={(event) => handleChange(event.target.value)}
+              />
             </div>
           </section>
         </div>
       </nav>
       <div className="top-[80px] lg:max-w-[75%] sm:max-w-[100%] m-auto shadow-sm bg-purple-500">
-        <ul className="h-[40px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto gap-2">
-          <li>hello from ul</li>
-        </ul>
+        <NavLinks />
       </div>
       {/** search bar appears under navbar on small screens */}
       <section className="flex items-center justify-center max-w-7xl px-3 md:hidden mt-1 mx-auto">
-        <Searchbar />
+        <Searchbar
+          value={searchInput}
+          onChange={(event) => handleChange(event.target.value)}
+        />
       </section>
     </>
   );
