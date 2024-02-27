@@ -11,6 +11,7 @@
     "data:destroy": "ts-node --project tsconfig.seeder.json seeds.js -d"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.24.1",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
     "mongoose": "^8.2.0",

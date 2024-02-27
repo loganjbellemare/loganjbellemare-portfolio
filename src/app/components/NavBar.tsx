@@ -4,12 +4,32 @@ import Image from "next/image";
 import Searchbar from "./Searchbar";
 import { FaGithub } from "react-icons/fa";
 import { BsMailboxFlag } from "react-icons/bs";
+import { FaLinkedin } from "react-icons/fa";
 import NavLinks from "./NavLinks";
+import { readProjectsByName } from "../../services/index";
 
 type Props = {};
 
 export default function NavBar(props: Props) {
   const [searchInput, setSearchInput] = useState("");
+  const [projects, setProjects] = useState([]);
+  const [err, setErr] = useState("");
+
+  //search projects by searchInput on search submit
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    try {
+      event.preventDefault();
+      //use service function to retrieve data from API
+      const response = await readProjectsByName(searchInput);
+      //save response in state
+      setProjects(response);
+      //set error to null on success
+      setErr("");
+    } catch (error: any) {
+      console.error(error);
+      setErr(error);
+    }
+  }
 
   function handleChange(value: string) {
     setSearchInput(value);
@@ -19,14 +39,18 @@ export default function NavBar(props: Props) {
     <>
       <nav className=" sticky shadow-sm top-0 left-0 lg:max-w-[75%] sm:max-w-[100%] m-auto bg-violet-950 ">
         <div className=" h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto gap-2">
+          {/** logo */}
           <div className="flex items-center justify-center gap-2 ">
-            <Image
-              width={200}
-              height={200}
-              alt="mycodespace logo"
-              src="https://iili.io/JG2tm3Q.png"
-              className=" mt-1 flex"
-            />
+            <a href="#" className="cursor-pointer">
+              <Image
+                width={200}
+                height={200}
+                alt="mycodespace logo"
+                src="https://iili.io/JG2tm3Q.png"
+                className=" mt-1 flex md:w-auto"
+              />
+            </a>
+            {/** main header */}
             <h2
               className=" md:text-3xl sm:text-lg
            mt-1 text-white"
@@ -34,7 +58,19 @@ export default function NavBar(props: Props) {
               Logan Bellemare
             </h2>
           </div>
+
+          {/** section for icon links and search bar */}
           <section className="flex gap-2 items-center">
+            <a
+              href="https://www.linkedin.com/in/logan-bellemare444"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin
+                title="LinkedIn profile"
+                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80 focus:outline-none focus:opacity-80 cursor-pointer"
+              />
+            </a>
             <a
               href="https://github.com/loganjbellemare"
               target="_blank"
@@ -55,6 +91,7 @@ export default function NavBar(props: Props) {
             <div className="relative hidden md:flex">
               <Searchbar
                 value={searchInput}
+                onSubmit={handleSubmit}
                 onChange={(event) => handleChange(event.target.value)}
               />
             </div>
@@ -69,6 +106,7 @@ export default function NavBar(props: Props) {
         <Searchbar
           value={searchInput}
           onChange={(event) => handleChange(event.target.value)}
+          onSubmit={handleSubmit}
         />
       </section>
     </>

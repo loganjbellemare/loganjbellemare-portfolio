@@ -1,6 +1,6 @@
 import ConnectToDB from "@/database";
 import { NextRequest, NextResponse } from "next/server";
-import Projects from "../../../../models/projects";
+import Projects from "../../../../../models/projects";
 
 export const dynamic = "force-dynamic";
 
