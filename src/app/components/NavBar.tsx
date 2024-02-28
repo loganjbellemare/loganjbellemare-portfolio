@@ -37,7 +37,7 @@ export default function NavBar(props: Props) {
 
   return (
     <>
-      <nav className=" sticky shadow-sm top-0 left-0 lg:max-w-[75%] sm:max-w-[100%] m-auto bg-violet-950 ">
+      <nav className=" sticky shadow-sm top-0 z-50 left-0 lg:max-w-[75%] sm:max-w-[100%] m-auto bg-violet-950 ">
         <div className=" h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto gap-2">
           {/** logo */}
           <div className="flex items-center justify-center gap-2 ">
@@ -65,26 +65,33 @@ export default function NavBar(props: Props) {
               href="https://www.linkedin.com/in/logan-bellemare444"
               target="_blank"
               rel="noopener noreferrer"
+              className="focus:outline-none focus:opacity-80"
             >
               <FaLinkedin
                 title="LinkedIn profile"
-                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80 focus:outline-none focus:opacity-80 cursor-pointer"
+                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80 cursor-pointer"
               />
             </a>
             <a
               href="https://github.com/loganjbellemare"
               target="_blank"
               rel="noopener noreferrer"
+              className="focus:outline-none focus:opacity-80"
             >
               <FaGithub
                 title="View my GitHub account"
-                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80 focus:outline-none focus:opacity-80 cursor-pointer"
+                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80  cursor-pointer"
               />
             </a>
-            <a href="mailto:loganbellemare444@gmail.com" target="_blank">
+            <a
+              href="mailto:loganbellemare444@gmail.com"
+              target="_blank"
+              className="focus:outline-none focus:opacity-80 "
+              rel="noopener noreferrer"
+            >
               <BsMailboxFlag
                 title="email me!"
-                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80 focus:outline-none focus:opacity-80 cursor-pointer"
+                className="md:text-2xl sm:text-lg text-purple-500 hover:opacity-80 cursor-pointer"
               />
             </a>
             {/** search bar in nav for bigger screens */}
@@ -98,7 +105,8 @@ export default function NavBar(props: Props) {
           </section>
         </div>
       </nav>
-      <div className="top-[80px] lg:max-w-[75%] sm:max-w-[100%] m-auto shadow-sm bg-purple-500">
+      {/** nav links */}
+      <div className="top-[80px] lg:max-w-[75%] sm:mb-1 md:mb-0 sm:max-w-[100%] m-auto shadow-sm bg-purple-500">
         <NavLinks />
       </div>
       {/** search bar appears under navbar on small screens */}
