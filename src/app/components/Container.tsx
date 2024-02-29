@@ -8,7 +8,7 @@ export default function Container(props: Props) {
     <div
       {...props}
       className={classNames(
-        " lg:max-w-[75%] sm:max-w-[100%] mx-auto bg-white",
+        " xl:max-w-[75%] sm:max-w-[100%] mx-auto bg-white",
         props.className
       )}
     ></div>

@@ -7,7 +7,6 @@ import { BsMailboxFlag } from "react-icons/bs";
 import { FaLinkedin } from "react-icons/fa";
 import NavLinks from "./NavLinks";
 import { readProjectsByName } from "../../services/index";
-
 type Props = {};
 
 export default function NavBar(props: Props) {
@@ -37,7 +36,7 @@ export default function NavBar(props: Props) {
 
   return (
     <>
-      <nav className=" sticky shadow-sm top-0 z-50 left-0 lg:max-w-[75%] sm:max-w-[100%] m-auto bg-violet-950 ">
+      <nav className=" sticky shadow-sm top-0 z-50 left-0 xl:max-w-[75%] sm:max-w-[100%] m-auto bg-violet-950 ">
         <div className=" h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto gap-2">
           {/** logo */}
           <div className="flex items-center justify-center gap-2 ">
@@ -106,7 +105,7 @@ export default function NavBar(props: Props) {
         </div>
       </nav>
       {/** nav links */}
-      <div className="top-[80px] lg:max-w-[75%] sm:mb-1 md:mb-0 sm:max-w-[100%] m-auto shadow-sm bg-purple-500">
+      <div className="top-[80px] xl:max-w-[75%] sm:mb-1 md:mb-0 sm:max-w-[100%] m-auto shadow-sm bg-purple-500">
         <NavLinks />
       </div>
       {/** search bar appears under navbar on small screens */}

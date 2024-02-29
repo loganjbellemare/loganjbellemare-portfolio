@@ -1,12 +1,28 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Container from "../Container";
 import classNames from "@/app/utils/classNames";
 import Image from "next/image";
 import ContactBox from "./ContactBox";
-
+import UrlBox from "./UrlBox";
+import InterestsBox from "./InterestsBox";
+import ProjectsBox from "./ProjectsBox";
 type Props = {};
 
 export default function HomePage(props: Props) {
+  const [projects, setProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/projects/get");
+      const data = await response.json();
+      console.log("projects from API", data);
+      setProjects([...data.data]);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container
       className={classNames(" md:table align-top p-4 box-border md:mt-0")}
@@ -16,14 +32,14 @@ export default function HomePage(props: Props) {
         <h3>
           <b>Logan Bellemare</b>
         </h3>
-        <div className="flex">
+        <div className="lg:flex">
           {/** pfp */}
           <Image
-            width={100}
-            height={100}
+            width={200}
+            height={200}
             src="https://iili.io/JGr23Dx.jpg"
             alt="Logan's profile picture"
-            className=" h-full w-full aspect-square mt-3"
+            className=" h-full w-full max-w-[240px] max-h-[240px] aspect-square mt-3"
           />
           <div className="text-[80%] w-full pl-2">
             {/** tagline and last active */}
@@ -65,10 +81,14 @@ export default function HomePage(props: Props) {
           </p>
         </div>
         <ContactBox />
+        <div className="my-3">
+          <UrlBox />
+        </div>
+        <InterestsBox />
       </div>
       {/** right side of profile view */}
       <div className="md:w-[60%] box-border sm:block ml-2">
-        hello from right
+        <ProjectsBox projects={projects} />
       </div>
     </Container>
   );
