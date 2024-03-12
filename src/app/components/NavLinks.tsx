@@ -5,7 +5,7 @@ export default function NavLinks() {
     <ul className="h-[30px] w-full flex justify-center items-center max-w-7xl px-2 mx-auto gap-2 text-nowrap whitespace-nowrap">
       <li key={1} className="  md:after:content-['_|_'] ">
         <a
-          href="#"
+          href="/"
           className="hover:text-pink-400 focus:text-pink-400 focus:outline-none"
         >
           Home

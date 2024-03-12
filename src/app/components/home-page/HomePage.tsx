@@ -7,6 +7,9 @@ import ContactBox from "./ContactBox";
 import UrlBox from "./UrlBox";
 import InterestsBox from "./InterestsBox";
 import ProjectsBox from "./ProjectsBox";
+import BlurbsBox from "./BlurbsBox";
+import FriendsBox from "./FriendsBox";
+import CommentsBox from "./CommentsBox";
 type Props = {};
 
 export default function HomePage(props: Props) {
@@ -16,7 +19,7 @@ export default function HomePage(props: Props) {
     const fetchData = async () => {
       const response = await fetch("/api/projects/get");
       const data = await response.json();
-      console.log("projects from API", data);
+      console.log("response from API", data);
       setProjects([...data.data]);
     };
 
@@ -24,11 +27,9 @@ export default function HomePage(props: Props) {
   }, []);
 
   return (
-    <Container
-      className={classNames(" md:table align-top p-4 box-border md:mt-0")}
-    >
+    <Container className={classNames("mt-1 md:table p-4 md:mt-0")}>
       {/** left side of profile view */}
-      <div className="md:w-[40%] sm:block md:table-cell left-0 mr-2">
+      <div className="md:w-[40%] sm:block md:table-cell left-0 mx-2">
         <h3>
           <b>Logan Bellemare</b>
         </h3>
@@ -87,8 +88,11 @@ export default function HomePage(props: Props) {
         <InterestsBox />
       </div>
       {/** right side of profile view */}
-      <div className="md:w-[60%] box-border sm:block ml-2">
+      <div className="md:w-[60%] md:table-cell right-0 sm:block mx-1">
         <ProjectsBox projects={projects} />
+        <BlurbsBox />
+        <FriendsBox />
+        <CommentsBox />
       </div>
     </Container>
   );

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function InterestsBox() {
   return (
-    <div className="border-2 border-purple-500 ">
+    <div className="border-2 mb-2 border-purple-500 ">
       {/** header */}
       <div className="w-full bg-purple-500 box-border text-white text-[80%] py-[2px] px-[7px]">
         <h4>

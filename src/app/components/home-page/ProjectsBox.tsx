@@ -12,15 +12,31 @@ type Project = {
   updatedAt: string;
 };
 
-type Props = {};
+interface MapProjectsProps {
+  projects: Project[];
+}
 
-export default function ProjectsBox(props: { projects: any[] }) {
-  const [pinned, setPinned] = useState(props);
-  console.log("props from project box", props.projects);
+export default function ProjectsBox(props: { projects: Project[] }) {
+  const [pinned, setPinned] = useState(props.projects);
+  useEffect(() => {
+    const sortedProjects = props.projects.sort((a: Project, b: Project) => {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return dateB - dateA;
+    });
+
+    if (sortedProjects.length > 6) {
+      setPinned(sortedProjects.slice(0, 6));
+    } else {
+      setPinned(sortedProjects);
+    }
+
+    console.log("pinned projects", pinned);
+  }, [props]);
 
   return (
-    <div className="box-border text-[80%] my-[2.33em] md:px-3 block">
-      <h4 className="font-bold py-3">
+    <div className="text-[80%] md:px-3">
+      <h4 className="font-bold">
         Logan's Latest Projects{" ["}
         <a
           href="/projects"
@@ -29,9 +45,30 @@ export default function ProjectsBox(props: { projects: any[] }) {
           View Projects
         </a>
         {"] "}
-        {/** add logic to check for projects.length, add projects props to be added from parent component */}
       </h4>
-      <p className="py-3">find a profile with blog entries for ref</p>{" "}
+
+      <MapProjects projects={pinned} />
     </div>
   );
+}
+
+function MapProjects({ projects }: MapProjectsProps) {
+  if (!projects.length) {
+    return <i>There are no projects yet...</i>;
+  }
+
+  return projects.map((project: Project) => (
+    <p key={project.id} className=" me-[0px] ms-[0px] block">
+      {project.name}
+      {" - ("}
+      <a
+        href={`/projects/${project.id}`}
+        rel="noopener noreferrer"
+        className="text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none"
+      >
+        view more
+      </a>
+      {")"}
+    </p>
+  ));
 }
