@@ -103,11 +103,12 @@ export default function NavBar(props: Props) {
             </div>
           </section>
         </div>
+        {/** nav links */}
+        <div className="top-[80px] sm:mb-1 md:mb-0 max-w-[100%] m-auto shadow-sm bg-purple-500">
+          <NavLinks />
+        </div>
       </nav>
-      {/** nav links */}
-      <div className="top-[80px] xl:max-w-[75%] sm:mb-1 md:mb-0 sm:max-w-[100%] m-auto shadow-sm bg-purple-500">
-        <NavLinks />
-      </div>
+
       {/** search bar appears under navbar on small screens */}
       <section className="flex items-center justify-center max-w-7xl px-3 md:hidden mt-1 mx-auto">
         <Searchbar

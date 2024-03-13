@@ -4,7 +4,7 @@ import Projects from "../../../../../models/projects";
 
 export const dynamic = "force-dynamic";
 
-export default async function GET(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
     // Connect to the database
     await ConnectToDB();
