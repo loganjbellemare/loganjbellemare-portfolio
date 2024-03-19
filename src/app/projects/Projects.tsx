@@ -1,7 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Container from "../components/Container";
 import classNames from "../utils/classNames";
+import { ImCheckmark } from "react-icons/im";
+import Image from "next/image";
+import { useQueryState } from "nuqs";
 
 type Project = {
   id: string;
@@ -19,27 +22,86 @@ interface MapProjectsProps {
 }
 
 export default function ProjectsView() {
+  const [toggleState, setToggleState] = useQueryState("type", {
+    history: "push",
+  });
   const [projects, setProjects] = useState<any[]>([]);
 
+  // load project data depending on toggleState value
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/apps/get");
-      const data = await response.json();
-      console.log("response from API", data);
-      setProjects([...data.data]);
+      if (toggleState === "art") {
+        const response = await fetch("/api/art/get"); //get art projects when toggleState is set to 'art'
+        const data = await response.json();
+        console.log("response from API", data);
+        setProjects([...data.data]);
+      } else {
+        const response = await fetch("/api/apps/get"); //get application projects when toggleState is set to 'app'
+        const data = await response.json();
+        console.log("response from API", data);
+        setProjects([...data.data]);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [toggleState]);
 
   return (
     <Container className={classNames("mt-1 md:mt-0 p-4 text-[80%]")}>
-      <div className="text-center mb-3">
-        <h2 className="font-bold text-lg">My Web Projects</h2>
-        <p>Applications developed by yours truly{" <3"}</p>
-      </div>
-      <div className=" mx-[10%]">
-        <MapProjects projects={projects} />
+      <div className="mb-3 w-[80%] mx-auto py-[8px]">
+        {/** page header */}
+        <h2 className="font-bold text-[1.5em] my-[.83em]">Browse Projects</h2>
+        {/** filter toggler */}
+        {toggleState === "art" ? (
+          // display 'art' text bold and with check icon when toggleState is set to 'art'
+          <p className="my-[1em]">
+            Filter:{" "}
+            <a
+              onClick={() => setToggleState("app")}
+              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500 "
+            >
+              Web Apps
+            </a>
+            {" | "}
+            <a
+              onClick={() => setToggleState("art")}
+              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
+            >
+              <ImCheckmark className="text-lime-400 inline-block mr-1" />
+              My Art
+            </a>
+          </p>
+        ) : (
+          // display 'app' text bold and with check icon when toggleState is set to 'app'
+          <p className="my-[1em]">
+            Filter:{" "}
+            <a
+              onClick={() => setToggleState("app")}
+              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
+            >
+              <ImCheckmark className="text-lime-400 inline-block mr-1" />
+              Web Apps
+            </a>
+            {" | "}
+            <a
+              onClick={() => setToggleState("art")}
+              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500"
+            >
+              My Art
+            </a>
+          </p>
+        )}
+        {/** project box */}
+        <div className="border border-purple-500 my-[1em]">
+          {/** projects box header */}
+          <div className="px-[4px] py-[8px] bg-purple-500 text-white font-bold">
+            <h4>Projects</h4>
+          </div>
+          {/** projects display */}
+          <div className="px-[4px] py-[8px] flex flex-col justify-between content-center">
+            <MapProjects projects={projects} />
+          </div>
+        </div>
       </div>
     </Container>
   );
@@ -47,29 +109,84 @@ export default function ProjectsView() {
 
 const MapProjects = ({ projects }: MapProjectsProps) => {
   return projects.map((project: Project) => (
-    <div
-      key={project.id}
-      className="shadow-lg hover:shadow-inner rounded-lg p-5 gap-1 flex flex-col mb-3 bg-purple-300 text-center"
-    >
-      <h4 className="font-bold">{project.name}</h4>
-      <p>{project.technologies}</p>
-      <div>
-        <a
-          href={project.website}
-          rel="noopener noreferrer"
-          className="font-bold text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none"
-        >
-          View Site
-        </a>
-        {" | "}
-        <a
-          href={project.github}
-          rel="noopener noreferrer"
-          className="font-bold text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none"
-        >
-          View Codebase
-        </a>
-      </div>
+    <div key={project.id} className="mx-[5px] my-[10px] text-center">
+      {project.type === "app" ? (
+        // display both link to deployed site and github repo if project is an application
+        <>
+          <p className="font-bold py-2">{project.name}</p>
+          <p className="py-2">{project.technologies}</p>
+          <div>
+            <a
+              href={project.website}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-bold text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none py-2"
+            >
+              View Site
+            </a>
+            {" | "}
+            <a
+              href={project.github}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-bold text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none py-2"
+            >
+              View Codebase
+            </a>
+          </div>
+        </>
+      ) : (
+        // display thumbnail image and link to full image if project is an art piece
+        <>
+          <Suspense fallback={<ImageFallback />}>
+            <Image
+              src={project.website}
+              alt={project.name + " image"}
+              height={500}
+              width={500}
+              className="mx-auto py-2"
+            />
+          </Suspense>
+
+          <p className="font-bold py-2">{project.name}</p>
+          <p>{project.technologies}</p>
+          <div className="py-2">
+            <a
+              href={project.website}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-bold text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none"
+            >
+              View Full Image
+            </a>
+          </div>
+        </>
+      )}
     </div>
   ));
 };
+
+function ImageFallback() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoaded = () => {
+    setImageLoaded(true);
+  };
+
+  return (
+    // skeleton loader for project images
+    <div className="relative w-full h-full">
+      {!imageLoaded && (
+        <div className="animate-pulse bg-gray-200 rounded-lg w-full h-full"></div>
+      )}
+      <img
+        height={500}
+        width={500}
+        className={`absolute top-0 left-0 ${
+          imageLoaded ? "opacity-100" : "opacity-0"
+        } transition-opacity duration-500 ease-in-out`}
+        onLoad={handleImageLoaded}
+      />
+    </div>
+  );
+}

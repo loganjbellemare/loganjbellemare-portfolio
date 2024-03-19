@@ -17,7 +17,7 @@ export default function HomePage(props: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/projects/get");
+      const response = await fetch("/api/apps/get");
       const data = await response.json();
       console.log("response from API", data);
       setProjects([...data.data]);
@@ -66,14 +66,14 @@ export default function HomePage(props: Props) {
           <p className="py-2">
             <b>View my:</b>{" "}
             <a
-              href="/projects"
+              href="/projects?type=app"
               className="hover:text-pink-400 text-purple-500 focus:outline-none focus:text-pink-400 cursor-pointer"
             >
               <b>Apps</b>
             </a>
             {" | "}
             <a
-              href="/art"
+              href="/projects?type=art"
               className="hover:text-pink-400 text-purple-500 focus:outline-none
             focus:text-pink-400 cursor-pointer"
             >

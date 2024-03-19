@@ -29,21 +29,13 @@ export default function NavLinks() {
       </li>
       <li key={4} className=" md:after:content-['_|_'] ">
         <a
-          href="/art"
-          className="hover:text-pink-400 focus:text-pink-400 focus:outline-none"
-        >
-          Art
-        </a>
-      </li>
-      <li key={5} className=" md:after:content-['_|_'] ">
-        <a
-          href="/art"
+          href="/resume"
           className="hover:text-pink-400 focus:text-pink-400 focus:outline-none"
         >
           Resume
         </a>
       </li>
-      <li key={6}>
+      <li key={5}>
         <a
           href="/contact"
           className="hover:text-pink-400 focus:text-pink-400 focus:outline-none"
