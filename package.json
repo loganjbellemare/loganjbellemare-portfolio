@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "data:seed": "ts-node --project tsconfig.seeder.json seeds.js",
-    "data:destroy": "ts-node --project tsconfig.seeder.json seeds.js -d"
+    "data:destroy": "ts-node --project tsconfig.seeder.json seeds.js -d",
+    "assets:seed": "ts-node --project tsconfig.seeder.json assets.seeds.js",
+    "assets:destroy": "ts-node --project tsconfig.seeder.json assets.seeds.js -d"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.24.1",

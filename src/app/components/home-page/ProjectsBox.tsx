@@ -62,8 +62,9 @@ function MapProjects({ projects }: MapProjectsProps) {
       {project.name}
       {" - ("}
       <a
-        href={`/projects/${project.id}`}
+        href={project.website}
         rel="noopener noreferrer"
+        target="_blank"
         className="text-purple-500 hover:text-pink-400 focus:text-pink-400 focus:outline-none"
       >
         view more

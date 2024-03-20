@@ -1,12 +1,48 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import classNames from "../utils/classNames";
+import Image from "next/image";
 
-type Props = {};
+type Asset = {
+  id: string;
+  name: string;
+  type: string;
+  src: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+interface MapImagesProps {
+  images: Asset[];
+}
 
 export default function AboutView() {
+  const [images, setImages] = useState<any[]>([]);
+  const [blinkies, setBlinkies] = useState<any[]>([]);
+
+  useEffect(() => {
+    //fetch full images to display in main photo grid
+    const fetchImages = async () => {
+      const response = await fetch("/api/assets/get/images");
+      const data = await response.json();
+      setImages([...data.data]);
+    };
+
+    //fetch blinkies for my self indulgent blinky grid c:
+    const fetchBlinkies = async () => {
+      const response = await fetch("/api/assets/get/blinkies");
+      const data = await response.json();
+      setBlinkies([...data.data]);
+    };
+
+    fetchImages();
+    fetchBlinkies();
+  }, []);
+
   return (
     <Container className={classNames("mt-1 md:mt-0 md:table p-4 text-[80%]")}>
+      {/** left side */}
       <div className="sm:block md:table-cell mr-2 md:w-[30%]">
         {/** title */}
         <h2 className="my-2 text-md text-center font-bold">
@@ -62,8 +98,8 @@ export default function AboutView() {
           </li>
         </ul>
       </div>
+      {/** right side */}
       <div className="sm:block md:table-cell sm:px-0 md:p-[7px] md:w-[60%]">
-        {/** image grid */}
         <div>
           <p className="md:p-2">
             I like to imagine a world where everyone lives together without
@@ -84,7 +120,28 @@ export default function AboutView() {
             </a>
           </p>
         </div>
+        {/** image grid */}
+        <div className="md:pd-2">
+          <h4>Some of my favorite images</h4>
+          <MapImages images={images} />
+        </div>
       </div>
     </Container>
   );
+}
+
+function MapImages({ images }: MapImagesProps) {
+  if (!images.length) {
+    return null;
+  }
+
+  return images.map((image: Asset) => (
+    <Image
+      src={image.src}
+      alt={image.name}
+      key={image.id}
+      width={100}
+      height={100}
+    />
+  ));
 }
