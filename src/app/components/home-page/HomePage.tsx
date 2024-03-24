@@ -88,7 +88,7 @@ export default function HomePage(props: Props) {
         <InterestsBox />
       </div>
       {/** right side of profile view */}
-      <div className="md:w-[60%] md:table-cell right-0 sm:block mx-1">
+      <div className="md:w-[60%] md:table-cell right-0 sm:block mx-1 my-3 py-2">
         <ProjectsBox projects={projects} />
         <BlurbsBox />
         <FriendsBox />

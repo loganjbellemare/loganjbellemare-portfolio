@@ -76,7 +76,9 @@ export default function FriendsBox() {
         <p>
           Logan has <b className="text-purple-500">{friends.length}</b> friends
         </p>
-        <MapFriends friends={friends} />
+        <div className="block">
+          <MapFriends friends={friends} />
+        </div>
       </div>
     </div>
   );
@@ -86,7 +88,7 @@ function MapFriends({ friends }: MapFriendsProps) {
   return friends.map((friend: Friend) => (
     <div
       key={friend.id}
-      className=" w-[255px] inline-block text-center mr-[10px] mb-[15px]"
+      className=" w-[105px] inline-block text-center mr-[10px] mb-[15px]"
     >
       <p className="font-bold w-full break-words align-text-center">
         {friend.first_name}

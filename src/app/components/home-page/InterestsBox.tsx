@@ -16,7 +16,7 @@ export default function InterestsBox() {
           cellSpacing={3}
           className="w-full table border-separate border-gray-400"
         >
-          <tbody className=" table-row-group align-middle border-spacing-2">
+          <tbody className=" table-row-group align-middle border-spacing-2 sm:text-[80%] lg:text-[100%]">
             {/** general interests */}
             <tr>
               <td className="table-cell w-[33%] align-top font-bold text-purple-800 bg-purple-300">

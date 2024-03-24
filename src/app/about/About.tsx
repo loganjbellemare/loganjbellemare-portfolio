@@ -17,6 +17,10 @@ interface MapImagesProps {
   images: Asset[];
 }
 
+interface MaptBlinkiesProps {
+  blinkies: Asset[];
+}
+
 export default function AboutView() {
   const [images, setImages] = useState<any[]>([]);
   const [blinkies, setBlinkies] = useState<any[]>([]);
@@ -121,9 +125,20 @@ export default function AboutView() {
           </p>
         </div>
         {/** image grid */}
-        <div className="md:pd-2">
-          <h4>Some of my favorite images</h4>
-          <MapImages images={images} />
+        <div className="md:px-2 mb-3">
+          <h4 className="font-bold">Some of my favorite images</h4>
+          <div className="flex-row justify-center content-center">
+            <MapImages images={images} />
+          </div>
+        </div>
+        {/** blinkies because I literally can't help myself, I'm having fun */}
+        <div className="md:px-2 my-1">
+          <h4 className="font-bold">
+            And some blinkies because... I can't resist
+          </h4>
+          <div className="flex-row justify-center content-center">
+            <MapBlinkies blinkies={blinkies} />
+          </div>
         </div>
       </div>
     </Container>
@@ -136,12 +151,33 @@ function MapImages({ images }: MapImagesProps) {
   }
 
   return images.map((image: Asset) => (
-    <Image
-      src={image.src}
-      alt={image.name}
-      key={image.id}
-      width={100}
-      height={100}
-    />
+    <div className="inline-block w-[105px] p-0 m-0">
+      <Image
+        src={image.src}
+        alt={image.name}
+        key={image.id}
+        width={100}
+        height={100}
+      />
+    </div>
+  ));
+}
+
+function MapBlinkies({ blinkies }: MaptBlinkiesProps) {
+  if (!blinkies.length) {
+    return null;
+  }
+
+  return blinkies.map((blinkie: Asset) => (
+    <div className="inline-block w-[105px]">
+      <Image
+        src={blinkie.src}
+        alt={blinkie.name}
+        key={blinkie.id}
+        width={100}
+        height={100}
+        className="h-[13.3px]"
+      />
+    </div>
   ));
 }
