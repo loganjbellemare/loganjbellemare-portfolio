@@ -4,7 +4,7 @@ import ProjectsView from "./Projects";
 
 export default function Projects() {
   return (
-    <main className="bg-midnightPurple h-full w-full">
+    <main className="bg-theme-image bg-repeat h-full w-full">
       <NavBar />
       <ProjectsView />
     </main>

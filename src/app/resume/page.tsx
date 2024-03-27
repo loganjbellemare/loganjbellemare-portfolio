@@ -3,7 +3,7 @@ import ResumeView from "./Resume";
 
 export default function Resume() {
   return (
-    <main className=" bg-midnightPurple h-full w-full">
+    <main className=" bg-theme-image bg-cover bg-no-repeat h-full w-full">
       <NavBar />
       <ResumeView />
     </main>

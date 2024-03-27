@@ -23,7 +23,10 @@ export default function Searchbar(props: Props) {
           "px-4 py-2 border border-purple-500 rounded-l-md focus:border-pink-400 focus:outline-none h-full"
         )}
       />
-      <button className="px-4 py-[8px] bg-purple-500 text-white rounded-r-md focus:outline-none focus:bg-pink-400 hover:bg-pink-400 h-full">
+      <button
+        type="submit"
+        className="px-4 py-[8px] bg-purple-500 text-white rounded-r-md focus:outline-none focus:bg-pink-400 hover:bg-pink-400 h-full"
+      >
         <BsSearchHeart />
       </button>
     </form>

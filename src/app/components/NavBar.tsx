@@ -6,28 +6,16 @@ import { FaGithub } from "react-icons/fa";
 import { BsMailboxFlag } from "react-icons/bs";
 import { FaLinkedin } from "react-icons/fa";
 import NavLinks from "./NavLinks";
-import { readProjectsByName } from "../../services/index";
+
 type Props = {};
 
-export default function NavBar(props: Props) {
+export default function NavBar({ router }: any) {
   const [searchInput, setSearchInput] = useState("");
-  const [projects, setProjects] = useState([]);
-  const [err, setErr] = useState("");
 
   //search projects by searchInput on search submit
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    try {
-      event.preventDefault();
-      //use service function to retrieve data from API
-      const response = await readProjectsByName(searchInput);
-      //save response in state
-      setProjects(response);
-      //set error to null on success
-      setErr("");
-    } catch (error: any) {
-      console.error(error);
-      setErr(error);
-    }
+    event.preventDefault();
+    window.location.assign(`/projects?search=${searchInput}`);
   }
 
   function handleChange(value: string) {

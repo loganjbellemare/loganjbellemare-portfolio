@@ -5,6 +5,7 @@ import classNames from "../utils/classNames";
 import { ImCheckmark } from "react-icons/im";
 import Image from "next/image";
 import { useQueryState } from "nuqs";
+import { useSearchParams } from "next/navigation";
 
 type Project = {
   id: string;
@@ -26,25 +27,60 @@ export default function ProjectsView() {
     history: "push",
   });
   const [projects, setProjects] = useState<any[]>([]);
+  const search = useSearchParams().get("search");
+
+  function checkForSearchParams() {
+    if (search) {
+      return true;
+    } else return false;
+  }
 
   // load project data depending on toggleState value
   useEffect(() => {
     const fetchData = async () => {
+      // if toggleState is set to art, return art projects
       if (toggleState === "art") {
-        const response = await fetch("/api/art/get"); //get art projects when toggleState is set to 'art'
-        const data = await response.json();
-        console.log("response from API", data);
-        setProjects([...data.data]);
+        // check for search params, return filtered results if so
+        if (checkForSearchParams()) {
+          const response = await fetch(`/api/art/get?search=${search}`);
+          const data = await response.json();
+          console.log("response from API", data);
+          setProjects([...data.data]);
+          // return all art projects if no search params
+        } else {
+          const response = await fetch("/api/art/get"); //get art projects when toggleState is set to 'art'
+          const data = await response.json();
+          console.log("response from API", data);
+          setProjects([...data.data]);
+        }
+
+        // if toggleState is set to apps, return app projects
       } else {
-        const response = await fetch("/api/apps/get"); //get application projects when toggleState is set to 'app'
-        const data = await response.json();
-        console.log("response from API", data);
-        setProjects([...data.data]);
+        // check for search params, and return filtered projects if so
+        if (checkForSearchParams()) {
+          const response = await fetch(`/api/apps/get?search=${search}`);
+          const data = await response.json();
+          console.log("response from API", data);
+          setProjects([...data.data]);
+          // else return all app projects
+        } else {
+          const response = await fetch("/api/apps/get"); //get application projects when toggleState is set to 'app'
+          const data = await response.json();
+          console.log("response from API", data);
+          setProjects([...data.data]);
+        }
       }
     };
 
     fetchData();
   }, [toggleState]);
+
+  function handleClick() {
+    const url = new URL(location.href);
+    url.searchParams.delete("search");
+    const noParamsUrl = url.toString().split("?")[0];
+    history.pushState({}, "", noParamsUrl);
+  }
 
   return (
     <Container className={classNames("mt-1 md:mt-0 p-4 text-[80%]")}>
@@ -57,15 +93,21 @@ export default function ProjectsView() {
           <p className="my-[1em]">
             Filter:{" "}
             <a
-              onClick={() => setToggleState("app")}
-              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500 "
+              onClick={() => {
+                handleClick();
+                setToggleState("app");
+              }}
+              className="hover:text-pink-400 cursor-pointer focus:outline-none focus:text-pink-400 text-purple-500 "
             >
               Web Apps
             </a>
             {" | "}
             <a
-              onClick={() => setToggleState("art")}
-              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
+              onClick={() => {
+                handleClick();
+                setToggleState("art");
+              }}
+              className="hover:text-pink-400 cursor-pointer focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
             >
               <ImCheckmark className="text-lime-400 inline-block mr-1" />
               My Art
@@ -76,16 +118,22 @@ export default function ProjectsView() {
           <p className="my-[1em]">
             Filter:{" "}
             <a
-              onClick={() => setToggleState("app")}
-              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
+              onClick={() => {
+                handleClick();
+                setToggleState("app");
+              }}
+              className="hover:text-pink-400 focus:outline-none cursor-pointer focus:text-pink-400 text-purple-500 font-bold"
             >
               <ImCheckmark className="text-lime-400 inline-block mr-1" />
               Web Apps
             </a>
             {" | "}
             <a
-              onClick={() => setToggleState("art")}
-              className="hover:text-pink-400 focus:outline-none focus:text-pink-400 text-purple-500"
+              onClick={() => {
+                handleClick();
+                setToggleState("art");
+              }}
+              className="hover:text-pink-400 focus:outline-none cursor-pointer focus:text-pink-400 text-purple-500"
             >
               My Art
             </a>
@@ -112,7 +160,7 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
     <div key={project.id} className="mx-[5px] my-[10px] text-center">
       {project.type === "app" ? (
         // display both link to deployed site and github repo if project is an application
-        <>
+        <div key={project.id}>
           <p className="font-bold py-2">{project.name}</p>
           <p className="py-2">{project.technologies}</p>
           <div>
@@ -134,10 +182,10 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
               View Codebase
             </a>
           </div>
-        </>
+        </div>
       ) : (
         // display thumbnail image and link to full image if project is an art piece
-        <>
+        <div key={project.id}>
           <Suspense fallback={<ImageFallback />}>
             <Image
               src={project.website}
@@ -160,7 +208,7 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
               View Full Image
             </a>
           </div>
-        </>
+        </div>
       )}
     </div>
   ));

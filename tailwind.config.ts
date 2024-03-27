@@ -23,6 +23,15 @@ const config: Config = {
       yellow: colors.yellow,
       sky: colors.sky,
       red: colors.red,
+      orange: colors.orange,
+      cyan: colors.cyan,
+      blue: colors.blue,
+      green: colors.green,
+    },
+    extend: {
+      backgroundImage: {
+        "theme-image": "url('../img/Bg-image.PNG')",
+      },
     },
   },
   plugins: [],

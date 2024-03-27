@@ -3,6 +3,15 @@ import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import classNames from "../utils/classNames";
 import Image from "next/image";
+import { IoLogoJavascript } from "react-icons/io5";
+import { FaHtml5 } from "react-icons/fa";
+import { FaReact } from "react-icons/fa";
+import { FaCss3Alt } from "react-icons/fa";
+import { FaNodeJs } from "react-icons/fa";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { SiMongodb } from "react-icons/si";
+import { SiVercel } from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
 
 type Asset = {
   id: string;
@@ -49,40 +58,90 @@ export default function AboutView() {
       {/** left side */}
       <div className="sm:block md:table-cell mr-2 md:w-[30%]">
         {/** title */}
-        <h2 className="my-2 text-md text-center font-bold">
+        <h2 className="my-2 text-md text-center font-bold text-purple-500">
           I want to be the very best, like no one ever was...
         </h2>
         {/** about text */}
         <p className="mb-2">Or at least better than I was yesterday.</p>
         <p className="mb-2">
           I'm Logan, but you probably knew that already, I'm a transmasc creator
-          originally from California. My biggest passion in life is creating,
-          whether that's making websites, art, clothing, or food.
+          originally from California, currently residing in Jacksonville,
+          Florida. My biggest passion in life is creating, whether that's making
+          websites, art, clothing, or food.
         </p>
         <p className="mb-2">
-          From a very young age, I was pushed to make the most of my ability to
-          learn and adapt quickly, taking part of my high school's Early College
-          Program, I completed my last 2 years of high school as a full-time
-          college student and graduated with both my Associates degree and my
-          diploma. After graduating, I pursued a career in restaurant work,
-          seeing as I love to create and food is one of the few things that
-          brings everyone together. I was promoted to my first management
-          position within a year of being hired, where I lead a wonderful team
-          of delivery drivers and instore staff and helped the store gain
-          corporate's 'Million Dollar Store' award in 2017. A few years pass,
-          and I decide I want to make a career switch as part of my
-          self-betterment journey. I took up coding as a hobby when a good
-          friend of mine suggested to try it out. I started out on FreeCodeCamp,
-          just learning the basics of web development (HTML, CSS, JavaScript),
-          and ended up really enjoying it. I decided I want to pursue web
-          development as a career opportunity, and enrolled in a bootcamp to
-          gain comprehensive knowledge of full-stack web development. It was by
-          far the hardest thing I have ever done, but I stuck it out and gained
-          a Certification in Software Engineering. I am currently looking for
-          exciting opportunities in web development, please feel free to message
-          me if you have a project you think I'd be a good fit for!
+          For as long as I can remember, I've been creating. My dad is also an
+          artist, and was my biggest inspiration from a very young age. Once I
+          was introduced to cartoons, videogames and, specifically anime, it
+          really fueled my passion to create cool characters. To this day anime
+          and manga are probably my biggest inspirations for my own art and
+          overall personal aesthetic. Old tech also has a special place in my
+          heart, being a early 00s kid, technology has been a huge thing my
+          whole life. I've been chronically online since I had access to a smart
+          phone or laptop, but I had no idea how any of it really worked. Seeing
+          as how digital content is the most popular type of content now, I
+          wanted to learn how to create things like websites and applications. I
+          had some exposure to HTML/CSS through adding custom styles to my
+          Tumblr blog, but nothing beyond that, and even that understanding was
+          minimal.
         </p>
         <p className="mb-2">
+          I decided to start teaching myself how to code after a few years of
+          trying to find a career I truly enjoyed, just to try it out out of a
+          couple different things. A good friend of mine recommended I start
+          learning, actually, as he was also into coding and we have a lot of
+          similar interests. I started learning some basic JavaScript/HTML/CSS
+          on FreeCodeCamp, and didn't need to try any of the other options I had
+          lined up. I quickly developed a passion for coding, as it's a great
+          creative outlet for me, and I've always enjoyed figuring out how
+          things work and solving complicated problems. So everything just kind
+          of worked out in that regard. After getting a good understanding of
+          web development basics, I decided to look into furthering my education
+          through different Bootcamp programs. I decided on Thinkful's
+          Full-stack Web Development program, which is to this day one of my
+          biggest achievements. It was a really rewarding experience, as I
+          learned how to build full-stack web applications from concept to
+          completion, as well as a foundational knowledge for my continued
+          learning on any technologies I'm interested in.
+        </p>
+        {/** dev technologies list */}
+        <div className="mb-2">
+          <b className="text-purple-500">My Favorite Technologies</b>
+          <div className="flex mt-1 gap-1">
+            <IoLogoJavascript
+              className="w-[50px] h-[50px] text-yellow-300"
+              title="JavaScript"
+            />
+            <FaHtml5
+              className="w-[50px] h-[50px] text-orange-500"
+              title="HTML5"
+            />
+            <FaReact
+              className="w-[50px] h-[50px] text-cyan-400"
+              title="React"
+            />
+            <FaCss3Alt
+              className="w-[50px] h-[50px] text-blue-500"
+              title="CSS3"
+            />
+            <FaNodeJs
+              className="w-[50px] h-[50px] text-lime-400"
+              title="Node.js"
+            />
+            <BiLogoPostgresql
+              className="w-[50px] h-[50px] text-blue-400"
+              title="PostgreSQL"
+            />
+            <SiMongodb
+              className="w-[50px] h-[50px] text-green-400"
+              title="MongoDB"
+            />
+            <SiVercel className="w-[50px] h-[50px]" title="Vercel" />
+            <TbBrandNextjs className="w-[50px] h-[50px]" title="Next.js" />
+          </div>
+        </div>
+        {/** other about text */}
+        <p className="mb-2 mt-3">
           Outside of my professional life, I enjoy gaming with my friends,
           making things, and hanging out with my dog, SunRay. I'm a huge nerd at
           heart, I love everything high-fantasy and horror. Dungeons and
@@ -126,14 +185,16 @@ export default function AboutView() {
         </div>
         {/** image grid */}
         <div className="md:px-2 mb-3">
-          <h4 className="font-bold">Some of my favorite images</h4>
+          <h4 className="font-bold text-purple-500">
+            Some of my favorite images
+          </h4>
           <div className="flex-row justify-center content-center">
             <MapImages images={images} />
           </div>
         </div>
         {/** blinkies because I literally can't help myself, I'm having fun */}
         <div className="md:px-2 my-1">
-          <h4 className="font-bold">
+          <h4 className="font-bold text-purple-500">
             And some blinkies because... I can't resist
           </h4>
           <div className="flex-row justify-center content-center">
@@ -158,6 +219,7 @@ function MapImages({ images }: MapImagesProps) {
         key={image.id}
         width={100}
         height={100}
+        title={image.name}
       />
     </div>
   ));
@@ -176,6 +238,7 @@ function MapBlinkies({ blinkies }: MaptBlinkiesProps) {
         key={blinkie.id}
         width={100}
         height={100}
+        title={blinkie.name}
         className="h-[13.3px]"
       />
     </div>

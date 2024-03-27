@@ -9,15 +9,31 @@ export async function GET(req: NextRequest) {
     // Connect to the database
     await ConnectToDB();
 
-    // Fetch projects data
-    const projects = await Projects.find({ type: "art" });
+    //check for search params
+    const searchInput = req.nextUrl.searchParams.get("search");
 
-    // Return JSON response with fetched data
-    return NextResponse.json({
-      success: true,
-      data: projects, // Sending fetched data in the response
-      message: "Data fetched successfully",
-    });
+    // if search params present, return projects with names matching query input
+    if (searchInput) {
+      const projects = await Projects.find({
+        name: { $regex: searchInput, $options: "i" },
+      });
+      return NextResponse.json({
+        success: true,
+        data: projects,
+        message: "Data fetched successfully",
+      });
+      //else fetch all projects
+    } else {
+      // Fetch projects data
+      const projects = await Projects.find({ type: "art" });
+
+      // Return JSON response with fetched data
+      return NextResponse.json({
+        success: true,
+        data: projects, // Sending fetched data in the response
+        message: "Data fetched successfully",
+      });
+    }
   } catch (error) {
     console.error(error);
     // Return error JSON response
