@@ -30,8 +30,6 @@ export default function ProjectsBox(props: { projects: Project[] }) {
     } else {
       setPinned(sortedProjects);
     }
-
-    console.log("pinned projects", pinned);
   }, [props]);
 
   return (

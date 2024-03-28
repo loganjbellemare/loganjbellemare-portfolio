@@ -14,6 +14,7 @@ type Project = {
   technologies: string;
   website: string;
   github: string;
+  thumbnail: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -35,7 +36,7 @@ export default function ProjectsView() {
     } else return false;
   }
 
-  // load project data depending on toggleState value
+  // load project data depending on toggleState value and search params
   useEffect(() => {
     const fetchData = async () => {
       // if toggleState is set to art, return art projects
@@ -44,13 +45,11 @@ export default function ProjectsView() {
         if (checkForSearchParams()) {
           const response = await fetch(`/api/art/get?search=${search}`);
           const data = await response.json();
-          console.log("response from API", data);
           setProjects([...data.data]);
           // return all art projects if no search params
         } else {
           const response = await fetch("/api/art/get"); //get art projects when toggleState is set to 'art'
           const data = await response.json();
-          console.log("response from API", data);
           setProjects([...data.data]);
         }
 
@@ -60,13 +59,11 @@ export default function ProjectsView() {
         if (checkForSearchParams()) {
           const response = await fetch(`/api/apps/get?search=${search}`);
           const data = await response.json();
-          console.log("response from API", data);
           setProjects([...data.data]);
           // else return all app projects
         } else {
           const response = await fetch("/api/apps/get"); //get application projects when toggleState is set to 'app'
           const data = await response.json();
-          console.log("response from API", data);
           setProjects([...data.data]);
         }
       }
@@ -75,10 +72,13 @@ export default function ProjectsView() {
     fetchData();
   }, [toggleState]);
 
+  //delete search params on toggle click to display all projects of each type
   function handleClick() {
     const url = new URL(location.href);
+    //delete search param 'search'
     url.searchParams.delete("search");
     const noParamsUrl = url.toString().split("?")[0];
+    //push new url to history
     history.pushState({}, "", noParamsUrl);
   }
 
@@ -142,7 +142,7 @@ export default function ProjectsView() {
         {/** project box */}
         <div className="border border-purple-500 my-[1em]">
           {/** projects box header */}
-          <div className="px-[4px] py-[8px] bg-purple-500 text-white font-bold">
+          <div className="px-[4px] py-[8px] bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 text-white font-bold">
             <h4>Projects</h4>
           </div>
           {/** projects display */}
@@ -160,7 +160,14 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
     <div key={project.id} className="mx-[5px] my-[10px] text-center">
       {project.type === "app" ? (
         // display both link to deployed site and github repo if project is an application
-        <div key={project.id}>
+        <div key={project.id} className="p-1">
+          <Image
+            src={project.thumbnail}
+            alt={project.name + " thumbnail"}
+            width={800}
+            height={800}
+            className="mx-auto shadow-sm shadow-violet-400 lg:w-[70%] lg:h-[70%]"
+          />
           <p className="font-bold py-2">{project.name}</p>
           <p className="py-2">{project.technologies}</p>
           <div>
@@ -192,11 +199,11 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
               alt={project.name + " image"}
               height={500}
               width={500}
-              className="mx-auto py-2"
+              className="mx-auto shadow-md shadow-violet-400"
             />
           </Suspense>
 
-          <p className="font-bold py-2">{project.name}</p>
+          <p className="font-bold my-1 py-2">{project.name}</p>
           <p>{project.technologies}</p>
           <div className="py-2">
             <a

@@ -44,7 +44,7 @@ export default function ContactBox() {
   return (
     <div className="w-full border-2 border-purple-500 text-[80%]">
       {/** header */}
-      <div className="w-full bg-purple-500 py-[2px] px-[7px] box-border text-white">
+      <div className="w-full bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 py-[2px] px-[7px] box-border text-white">
         <h4>
           <b>Contacting Logan</b>
         </h4>

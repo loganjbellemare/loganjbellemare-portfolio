@@ -19,7 +19,6 @@ export default function HomePage(props: Props) {
     const fetchData = async () => {
       const response = await fetch("/api/apps/get");
       const data = await response.json();
-      console.log("response from API", data);
       setProjects([...data.data]);
     };
 

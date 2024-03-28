@@ -58,11 +58,11 @@ export default function AboutView() {
       {/** left side */}
       <div className="sm:block md:table-cell mr-2 md:w-[30%]">
         {/** title */}
-        <h2 className="my-2 text-md text-center font-bold text-purple-500">
+        <h2 className="my-2 text-[1.5em] text-center font-bold">
           I want to be the very best, like no one ever was...
         </h2>
         {/** about text */}
-        <p className="mb-2">Or at least better than I was yesterday.</p>
+        <p className="my-2">Or at least better than I was yesterday.</p>
         <p className="mb-2">
           I'm Logan, but you probably knew that already, I'm a transmasc creator
           originally from California, currently residing in Jacksonville,
@@ -105,7 +105,7 @@ export default function AboutView() {
           learning on any technologies I'm interested in.
         </p>
         {/** dev technologies list */}
-        <div className="mb-2">
+        <div className="my-2">
           <b className="text-purple-500">My Favorite Technologies</b>
           <div className="flex mt-1 gap-1">
             <IoLogoJavascript
@@ -184,7 +184,7 @@ export default function AboutView() {
           </p>
         </div>
         {/** image grid */}
-        <div className="md:px-2 mb-3">
+        <div className="md:px-2 my-2">
           <h4 className="font-bold text-purple-500">
             Some of my favorite images
           </h4>
@@ -208,17 +208,20 @@ export default function AboutView() {
 
 function MapImages({ images }: MapImagesProps) {
   if (!images.length) {
-    return null;
+    return <p>no images yet...</p>;
   }
 
   return images.map((image: Asset) => (
-    <div className="inline-block w-[105px] p-0 m-0">
+    <div
+      key={image.id}
+      className="inline-block sm:w-[105px] lg:w-[200px] h-auto px-1 m-0"
+    >
       <Image
         src={image.src}
         alt={image.name}
         key={image.id}
-        width={100}
-        height={100}
+        width={200}
+        height={200}
         title={image.name}
       />
     </div>
@@ -227,11 +230,11 @@ function MapImages({ images }: MapImagesProps) {
 
 function MapBlinkies({ blinkies }: MaptBlinkiesProps) {
   if (!blinkies.length) {
-    return null;
+    return <p>no blinkies yet...</p>;
   }
 
   return blinkies.map((blinkie: Asset) => (
-    <div className="inline-block w-[105px]">
+    <div key={blinkie.id} className="inline-block w-[105px] h-auto m-1">
       <Image
         src={blinkie.src}
         alt={blinkie.name}
@@ -239,7 +242,6 @@ function MapBlinkies({ blinkies }: MaptBlinkiesProps) {
         width={100}
         height={100}
         title={blinkie.name}
-        className="h-[13.3px]"
       />
     </div>
   ));

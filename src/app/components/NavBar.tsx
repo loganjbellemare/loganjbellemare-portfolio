@@ -92,7 +92,7 @@ export default function NavBar({ router }: any) {
           </section>
         </div>
         {/** nav links */}
-        <div className="top-[80px] sm:mb-1 md:mb-0 max-w-[100%] m-auto shadow-sm bg-purple-500">
+        <div className="top-[80px] sm:mb-1 md:mb-0 max-w-[100%] m-auto shadow-sm bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500">
           <NavLinks />
         </div>
       </nav>
