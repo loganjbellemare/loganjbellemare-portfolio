@@ -28,7 +28,7 @@ export default function NavBar({ router }: any) {
         <div className=" h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto gap-2">
           {/** logo */}
           <div className="flex items-center justify-center gap-2 ">
-            <a href="#" className="cursor-pointer">
+            <a href="/" className="cursor-pointer">
               <Image
                 width={200}
                 height={200}
