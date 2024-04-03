@@ -16,5 +16,5 @@ export default async function ConnectToDB() {
   mongoose.connection.on("error", (err) => {
     console.log(`db connection problem`, err.message);
   });
-  return mongoose.connect(process.env.MONGO_URI);
+  return mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI);
 }
