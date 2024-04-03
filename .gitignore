@@ -41,3 +41,4 @@ next-env.d.ts
 #data files
 seeds.js
 assets.seeds.js
+.vercel
