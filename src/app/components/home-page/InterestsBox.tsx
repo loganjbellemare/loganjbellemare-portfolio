@@ -49,7 +49,7 @@ export default function InterestsBox() {
               <td className="table-cell align-top bg-purple-200">
                 Saw, Midsommar, Hellraiser, Studio Ghibli, anything from Jordan
                 Peele and Ari Aster, Lord of the Rings, Halloween, Trick
-                &aposr&apos Treat, Troll 2, Monster House 2006, The Last
+                &apos;r&apos; Treat, Troll 2, Monster House 2006, The Last
                 Unicorn, The Shining, anything that picks my brain and makes me
                 think or gives me a visceral emotional reaction
               </td>
