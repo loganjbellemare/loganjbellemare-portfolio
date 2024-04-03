@@ -35,7 +35,7 @@ export default function ProjectsBox(props: { projects: Project[] }) {
   return (
     <div className="text-[80%] md:px-3">
       <h4 className="font-bold">
-        Logan's Latest Projects{" ["}
+        Logan&apos;s Latest Projects{" ["}
         <a
           href="/projects"
           className="text-purple-500 focus:outline-none focus:text-pink-400 hover:text-pink-400"

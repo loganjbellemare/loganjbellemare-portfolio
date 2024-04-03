@@ -6,7 +6,7 @@ export default function InterestsBox() {
       {/** header */}
       <div className="w-full bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 box-border text-white text-[80%] py-[2px] px-[7px]">
         <h4>
-          <b>Logan's Interests</b>
+          <b>Logan&apos;s Interests</b>
         </h4>
       </div>
       {/** start of interests table */}
@@ -48,10 +48,10 @@ export default function InterestsBox() {
               </td>
               <td className="table-cell align-top bg-purple-200">
                 Saw, Midsommar, Hellraiser, Studio Ghibli, anything from Jordan
-                Peele and Ari Aster, Lord of the Rings, Halloween, Trick 'r'
-                Treat, Troll 2, Monster House 2006, The Last Unicorn, The
-                Shining, anything that picks my brain and makes me think or
-                gives me a visceral emotional reaction
+                Peele and Ari Aster, Lord of the Rings, Halloween, Trick
+                &aposr&apos Treat, Troll 2, Monster House 2006, The Last
+                Unicorn, The Shining, anything that picks my brain and makes me
+                think or gives me a visceral emotional reaction
               </td>
             </tr>
             {/** television interests */}
@@ -73,10 +73,10 @@ export default function InterestsBox() {
                 Books
               </td>
               <td className="table-cell align-top bg-purple-200">
-                Any listed anime above I've probably read the manga for,
-                Jagaaaaaaan!, RG Veda, I'm a whole-hearted believer that Tatsuki
-                Fujimoto is the most interesting writer alive I will read
-                anyting he puts out
+                Any listed anime above I&apos;ve probably read the manga for,
+                Jagaaaaaaan!, RG Veda, I&apos;m a whole-hearted believer that
+                Tatsuki Fujimoto is the most interesting writer alive I will
+                read anyting he puts out
               </td>
             </tr>
             {/** heroes interests */}

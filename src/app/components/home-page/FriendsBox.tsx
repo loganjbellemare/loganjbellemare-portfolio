@@ -70,7 +70,7 @@ export default function FriendsBox() {
   return (
     <div className="ml-2 box-border block text-[80%]">
       <h4 className="py-[2px] px-[7px] font-bold  bg-gradient-to-r from-pink-400 via-pink-500 to-pink-400 text-yellow-200 w-full">
-        Logan's Friend Space
+        Logan&apos;s Friend Space
       </h4>
       <div className="p-[7px]">
         <p>

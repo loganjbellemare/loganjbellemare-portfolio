@@ -6,7 +6,7 @@ export default function BlurbsBox() {
   return (
     <div className="my-[20px] ml-2 box-border block text-[80%]">
       <h4 className="py-[2px] px-[7px] font-bold bg-gradient-to-r from-pink-400 via-pink-500 to-pink-400 text-yellow-200 w-full">
-        Logan's Blurbs
+        Logan&apos;s Blurbs
       </h4>
       <div className="p-[7px]">
         <div className=" mb-[14px]">
@@ -23,7 +23,9 @@ export default function BlurbsBox() {
           ></iframe>
         </div>
         <div className="mb-[14px]">
-          <h4 className="font-bold text-purple-500">Who I'd like to meet:</h4>
+          <h4 className="font-bold text-purple-500">
+            Who I&apos;d like to meet:
+          </h4>
           <p className="text-[12px] mb-[8px]">
             Honestly just want to know who hurt my mans, Vessel
           </p>

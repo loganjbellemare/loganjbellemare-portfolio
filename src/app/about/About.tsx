@@ -64,24 +64,24 @@ export default function AboutView() {
         {/** about text */}
         <p className="my-2">Or at least better than I was yesterday.</p>
         <p className="mb-2">
-          I'm Logan, but you probably knew that already, I'm a transmasc creator
-          originally from California, currently residing in Jacksonville,
-          Florida. My biggest passion in life is creating, whether that's making
-          websites, art, clothing, or food.
+          I&apos;m Logan, but you probably knew that already, I&apos;m a
+          transmasc creator originally from California, currently residing in
+          Jacksonville, Florida. My biggest passion in life is creating, whether
+          that&aposs making websites, art, clothing, or food.
         </p>
         <p className="mb-2">
-          For as long as I can remember, I've been creating. My dad is also an
-          artist, and was my biggest inspiration from a very young age. Once I
-          was introduced to cartoons, videogames and, specifically anime, it
+          For as long as I can remember, I&apos;ve been creating. My dad is also
+          an artist, and was my biggest inspiration from a very young age. Once
+          I was introduced to cartoons, videogames and, specifically anime, it
           really fueled my passion to create cool characters. To this day anime
           and manga are probably my biggest inspirations for my own art and
           overall personal aesthetic. Old tech also has a special place in my
           heart, being a early 00s kid, technology has been a huge thing my
-          whole life. I've been chronically online since I had access to a smart
-          phone or laptop, but I had no idea how any of it really worked. Seeing
-          as how digital content is the most popular type of content now, I
-          wanted to learn how to create things like websites and applications. I
-          had some exposure to HTML/CSS through adding custom styles to my
+          whole life. I&apos;ve been chronically online since I had access to a
+          smart phone or laptop, but I had no idea how any of it really worked.
+          Seeing as how digital content is the most popular type of content now,
+          I wanted to learn how to create things like websites and applications.
+          I had some exposure to HTML/CSS through adding custom styles to my
           Tumblr blog, but nothing beyond that, and even that understanding was
           minimal.
         </p>
@@ -91,18 +91,18 @@ export default function AboutView() {
           couple different things. A good friend of mine recommended I start
           learning, actually, as he was also into coding and we have a lot of
           similar interests. I started learning some basic JavaScript/HTML/CSS
-          on FreeCodeCamp, and didn't need to try any of the other options I had
-          lined up. I quickly developed a passion for coding, as it's a great
-          creative outlet for me, and I've always enjoyed figuring out how
-          things work and solving complicated problems. So everything just kind
-          of worked out in that regard. After getting a good understanding of
-          web development basics, I decided to look into furthering my education
-          through different Bootcamp programs. I decided on Thinkful's
-          Full-stack Web Development program, which is to this day one of my
-          biggest achievements. It was a really rewarding experience, as I
-          learned how to build full-stack web applications from concept to
-          completion, as well as a foundational knowledge for my continued
-          learning on any technologies I'm interested in.
+          on FreeCodeCamp, and didn&apos;t need to try any of the other options
+          I had lined up. I quickly developed a passion for coding, as it&apos;s
+          a great creative outlet for me, and I&apos;ve always enjoyed figuring
+          out how things work and solving complicated problems. So everything
+          just kind of worked out in that regard. After getting a good
+          understanding of web development basics, I decided to look into
+          furthering my education through different Bootcamp programs. I decided
+          on Thinkful&apos;s Full-stack Web Development program, which is to
+          this day one of my biggest achievements. It was a really rewarding
+          experience, as I learned how to build full-stack web applications from
+          concept to completion, as well as a foundational knowledge for my
+          continued learning on any technologies I&aposm interested in.
         </p>
         {/** dev technologies list */}
         <div className="my-2">
@@ -143,12 +143,12 @@ export default function AboutView() {
         {/** other about text */}
         <p className="mb-2 mt-3">
           Outside of my professional life, I enjoy gaming with my friends,
-          making things, and hanging out with my dog, SunRay. I'm a huge nerd at
-          heart, I love everything high-fantasy and horror. Dungeons and
-          Dragons, Magic the Gathering, Pokemon, Pan's Labyrinth, Studio Ghibli,
-          anime/manga in general, roguelikes, teambuilders, auto-battlers,
-          (tt)(j)rps, anything with cool creature/character design and
-          interesting combat mechanics.
+          making things, and hanging out with my dog, SunRay. I&apos;m a huge
+          nerd at heart, I love everything high-fantasy and horror. Dungeons and
+          Dragons, Magic the Gathering, Pokemon, Pan&apos;s Labyrinth, Studio
+          Ghibli, anime/manga in general, roguelikes, teambuilders,
+          auto-battlers, (tt)(j)rps, anything with cool creature/character
+          design and interesting combat mechanics.
         </p>
         <ul className="list-decimal list-inside mb-2">
           <p className="text-purple-500">
@@ -168,12 +168,12 @@ export default function AboutView() {
             I like to imagine a world where everyone lives together without
             conflict or bias, and where technology is fully integrated into
             human life. A world where the advancements of technology truly make
-            people's lives easier, people only need to work when they want,
+            people&apos;s lives easier, people only need to work when they want,
             basic needs are always met, and we have no need for monetary
             systems. Everyone can pay each other for goods/services with
             goods/services, and there are no barriers to learning a skill or
-            trade. I know we're a long way off, but I would like to do all I can
-            to contribute to this future, if you have a similar mindset,{" "}
+            trade. I know we&aposre a long way off, but I would like to do all I
+            can to contribute to this future, if you have a similar mindset,{" "}
             <a
               href="mailto:loganbellemare444@gmail.com?subject=I%20want%20to%20change%20the%20world"
               rel="noopener noreferrer"
@@ -195,7 +195,7 @@ export default function AboutView() {
         {/** blinkies because I literally can't help myself, I'm having fun */}
         <div className="md:px-2 my-1">
           <h4 className="font-bold text-purple-500">
-            And some blinkies because... I can't resist
+            And some blinkies because... I can&apos;t resist
           </h4>
           <div className="flex-row justify-center content-center">
             <MapBlinkies blinkies={blinkies} />

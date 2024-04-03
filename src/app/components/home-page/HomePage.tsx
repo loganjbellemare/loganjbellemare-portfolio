@@ -44,8 +44,8 @@ export default function HomePage(props: Props) {
           <div className="text-[80%] w-full pl-2">
             {/** tagline and last active */}
             <p className="pt-2">
-              "In this world, the most fearsome one is a mediocre man who has
-              nothing else" -Sigma,
+              &quot;In this world, the most fearsome one is a mediocre man who
+              has nothing else&quot; -Sigma,
               <br />
               <i>文豪ストレイドッグス(Bungou Stray Dogs)</i>
               <br />
