@@ -4,7 +4,7 @@ import AboutView from "./About";
 
 export default function About() {
   return (
-    <main className="bg-theme-image bg-repeat">
+    <main>
       <NavBar />
       <AboutView />
       <Footer />

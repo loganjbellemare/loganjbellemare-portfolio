@@ -157,10 +157,10 @@ export default function ProjectsView() {
 
 const MapProjects = ({ projects }: MapProjectsProps) => {
   return projects.map((project: Project) => (
-    <div key={project.id} className="mx-[5px] my-[10px] text-center">
+    <li key={project.id} className="mx-[5px] my-[10px] text-center list-none">
       {project.type === "app" ? (
         // display both link to deployed site and github repo if project is an application
-        <div key={project.id} className="p-1">
+        <div className="p-1">
           <Image
             src={project.thumbnail}
             alt={project.name + " thumbnail"}
@@ -192,7 +192,7 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
         </div>
       ) : (
         // display thumbnail image and link to full image if project is an art piece
-        <div key={project.id}>
+        <div>
           <Suspense fallback={<ImageFallback />}>
             <Image
               src={project.website}
@@ -217,7 +217,7 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
           </div>
         </div>
       )}
-    </div>
+    </li>
   ));
 };
 

@@ -5,7 +5,7 @@ import ProjectsView from "./Projects";
 
 export default function Projects() {
   return (
-    <main className="bg-theme-image bg-repeat">
+    <main>
       <NavBar />
       <ProjectsView />
       <Footer />

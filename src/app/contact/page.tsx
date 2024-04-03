@@ -4,7 +4,7 @@ import ContactView from "./Contact";
 
 export default function Contact() {
   return (
-    <main className=" bg-theme-image bg-repeat h-[100vh]">
+    <main>
       <NavBar />
       <ContactView />
       <Footer />

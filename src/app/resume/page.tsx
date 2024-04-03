@@ -4,7 +4,7 @@ import ResumeView from "./Resume";
 
 export default function Resume() {
   return (
-    <main className=" bg-theme-image bg-repeat">
+    <main>
       <NavBar />
       <ResumeView />
       <Footer />

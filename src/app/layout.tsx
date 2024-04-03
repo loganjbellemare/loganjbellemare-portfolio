@@ -6,7 +6,7 @@ import classNames from "./utils/classNames";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Logan Bellemare Portfolio",
+  title: "Logan Bellemare | Portfolio",
   description:
     "A website to showcase my skills as a web developer, hope you enjoy your stay!",
 };
@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames([inter.className, "h-[100vh]"])}>
+      <body
+        className={classNames(["h-[100vh]", "bg-theme-image", inter.className])}
+      >
         {children}
       </body>
     </html>

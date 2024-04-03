@@ -1,12 +1,14 @@
-import React, { ReactEventHandler } from "react";
+"use client";
+import React from "react";
 import Container from "../components/Container";
 import classNames from "../utils/classNames";
 import Image from "next/image";
 
-export default function ContactView() {
+export default async function ContactView() {
+  //web3forms handleSubmit
   async function handleSubmit(event: any) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    let formData = new FormData(event.target);
 
     formData.append("access_key", "113916d2-373a-4c42-87e4-a12c4f2cfa9e");
 
@@ -22,8 +24,14 @@ export default function ContactView() {
       body: json,
     });
     const result = await response.json();
+    console.log(response);
     if (result.success) {
-      console.log(result);
+      window.confirm(
+        "message sent successfully. I'll get back to you as soon as possible"
+      );
+      event.target.reset();
+    } else {
+      window.confirm("something went wrong, please try again!");
     }
   }
 
@@ -45,16 +53,11 @@ export default function ContactView() {
           <h4 className="font-bold text-purple-500 mb-2">Contact Me</h4>
           {/** contact form */}
           <form
-            className="flex flex-col"
+            className="md:flex flex-col sm:block"
             name="contact"
-            action="https://api.web3forms.com/submit"
-            method="POST"
+            id="contact-form"
+            onSubmit={(e) => handleSubmit(e)}
           >
-            <input
-              type="hidden"
-              name="access_key"
-              value="113916d2-373a-4c42-87e4-a12c4f2cfa9e"
-            ></input>
             <div className="flex content-center justify-between gap-2 my-2 mx-4">
               <label htmlFor="name">Full Name: </label>
               <input
@@ -69,7 +72,7 @@ export default function ContactView() {
               <label htmlFor="phone-number">Phone Number: </label>
               <input
                 required
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                 type="text"
                 name="phone-number"
                 id="phone-number"
