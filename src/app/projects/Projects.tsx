@@ -83,8 +83,8 @@ export default function ProjectsView() {
   }
 
   return (
-    <Container className={classNames("mt-1 md:mt-0 p-4 text-[80%]")}>
-      <Suspense fallback={<div>Loading projects...</div>}>
+    <Suspense fallback={<div>Loading projects...</div>}>
+      <Container className={classNames("mt-1 md:mt-0 p-4 text-[80%]")}>
         <div className="mb-3 w-[80%] mx-auto py-[8px]">
           {/** page header */}
           <h2 className="font-bold text-[1.5em] my-[.83em]">Browse Projects</h2>
@@ -152,8 +152,8 @@ export default function ProjectsView() {
             </div>
           </div>
         </div>
-      </Suspense>
-    </Container>
+      </Container>
+    </Suspense>
   );
 }
 
@@ -163,13 +163,15 @@ const MapProjects = ({ projects }: MapProjectsProps) => {
       {project.type === "app" ? (
         // display both link to deployed site and github repo if project is an application
         <div className="p-1">
-          <Image
-            src={project.thumbnail}
-            alt={project.name + " thumbnail"}
-            width={800}
-            height={800}
-            className="mx-auto shadow-sm shadow-violet-400 lg:w-[70%] lg:h-[70%]"
-          />
+          <Suspense>
+            <Image
+              src={project.thumbnail}
+              alt={project.name + " thumbnail"}
+              width={800}
+              height={800}
+              className="mx-auto shadow-sm shadow-violet-400 lg:w-[70%] lg:h-[70%]"
+            />
+          </Suspense>
           <p className="font-bold py-2">{project.name}</p>
           <p className="py-2">{project.technologies}</p>
           <div>
