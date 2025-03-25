@@ -84,73 +84,75 @@ export default function ProjectsView() {
 
   return (
     <Container className={classNames("mt-1 md:mt-0 p-4 text-[80%]")}>
-      <div className="mb-3 w-[80%] mx-auto py-[8px]">
-        {/** page header */}
-        <h2 className="font-bold text-[1.5em] my-[.83em]">Browse Projects</h2>
-        {/** filter toggler */}
-        {toggleState === "art" ? (
-          // display 'art' text bold and with check icon when toggleState is set to 'art'
-          <p className="my-[1em]">
-            Filter:{" "}
-            <a
-              onClick={() => {
-                handleClick();
-                setToggleState("app");
-              }}
-              className="hover:text-pink-400 cursor-pointer focus:outline-none focus:text-pink-400 text-purple-500 "
-            >
-              Web Apps
-            </a>
-            {" | "}
-            <a
-              onClick={() => {
-                handleClick();
-                setToggleState("art");
-              }}
-              className="hover:text-pink-400 cursor-pointer focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
-            >
-              <ImCheckmark className="text-lime-400 inline-block mr-1" />
-              My Art
-            </a>
-          </p>
-        ) : (
-          // display 'app' text bold and with check icon when toggleState is set to 'app'
-          <p className="my-[1em]">
-            Filter:{" "}
-            <a
-              onClick={() => {
-                handleClick();
-                setToggleState("app");
-              }}
-              className="hover:text-pink-400 focus:outline-none cursor-pointer focus:text-pink-400 text-purple-500 font-bold"
-            >
-              <ImCheckmark className="text-lime-400 inline-block mr-1" />
-              Web Apps
-            </a>
-            {" | "}
-            <a
-              onClick={() => {
-                handleClick();
-                setToggleState("art");
-              }}
-              className="hover:text-pink-400 focus:outline-none cursor-pointer focus:text-pink-400 text-purple-500"
-            >
-              My Art
-            </a>
-          </p>
-        )}
-        {/** project box */}
-        <div className="border border-purple-500 my-[1em]">
-          {/** projects box header */}
-          <div className="px-[4px] py-[8px] bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 text-white font-bold">
-            <h4>Projects</h4>
-          </div>
-          {/** projects display */}
-          <div className="px-[4px] py-[8px] flex flex-col justify-between content-center">
-            <MapProjects projects={projects} />
+      <Suspense fallback={<div>Loading projects...</div>}>
+        <div className="mb-3 w-[80%] mx-auto py-[8px]">
+          {/** page header */}
+          <h2 className="font-bold text-[1.5em] my-[.83em]">Browse Projects</h2>
+          {/** filter toggler */}
+          {toggleState === "art" ? (
+            // display 'art' text bold and with check icon when toggleState is set to 'art'
+            <p className="my-[1em]">
+              Filter:{" "}
+              <a
+                onClick={() => {
+                  handleClick();
+                  setToggleState("app");
+                }}
+                className="hover:text-pink-400 cursor-pointer focus:outline-none focus:text-pink-400 text-purple-500 "
+              >
+                Web Apps
+              </a>
+              {" | "}
+              <a
+                onClick={() => {
+                  handleClick();
+                  setToggleState("art");
+                }}
+                className="hover:text-pink-400 cursor-pointer focus:outline-none focus:text-pink-400 text-purple-500 font-bold"
+              >
+                <ImCheckmark className="text-lime-400 inline-block mr-1" />
+                My Art
+              </a>
+            </p>
+          ) : (
+            // display 'app' text bold and with check icon when toggleState is set to 'app'
+            <p className="my-[1em]">
+              Filter:{" "}
+              <a
+                onClick={() => {
+                  handleClick();
+                  setToggleState("app");
+                }}
+                className="hover:text-pink-400 focus:outline-none cursor-pointer focus:text-pink-400 text-purple-500 font-bold"
+              >
+                <ImCheckmark className="text-lime-400 inline-block mr-1" />
+                Web Apps
+              </a>
+              {" | "}
+              <a
+                onClick={() => {
+                  handleClick();
+                  setToggleState("art");
+                }}
+                className="hover:text-pink-400 focus:outline-none cursor-pointer focus:text-pink-400 text-purple-500"
+              >
+                My Art
+              </a>
+            </p>
+          )}
+          {/** project box */}
+          <div className="border border-purple-500 my-[1em]">
+            {/** projects box header */}
+            <div className="px-[4px] py-[8px] bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 text-white font-bold">
+              <h4>Projects</h4>
+            </div>
+            {/** projects display */}
+            <div className="px-[4px] py-[8px] flex flex-col justify-between content-center">
+              <MapProjects projects={projects} />
+            </div>
           </div>
         </div>
-      </div>
+      </Suspense>
     </Container>
   );
 }
